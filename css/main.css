@@ -1,0 +1,163 @@
+/* 1 ---- Global Variables ---- */
+
+:root {
+    --color-bg-body: hsl(205, 78%, 58%);
+    --color-bg-section: hsl(80, 50%, 90%);
+    --color-font-body: rgb(95, 4, 4);
+    --color-board-frame: hsl(15, 40%, 33%);
+
+    --img-board: url("../img/water.webp");
+    --img-cardback: url("../img/BACK.png");
+    --img-cardfront1: url("../img/Normal_bg.webp");
+    --img-cardfront2: url("../img/Pasisve_bg.webp");
+}
+
+
+/* Put the cards into position */
+
+#zen-explanation {
+    --pos-top: 150px;
+    --pos-left: 400px;
+    --tilt: -20deg;
+    --front-color: var(--img-cardfront1);
+}
+
+#zen-participation {
+    --pos-top: 180px;
+    --pos-left: 100px;
+    --tilt: 20deg;
+    --front-color: var(--img-cardfront2);
+    z-index: 10;
+}
+
+
+/* Hide the sections that are not being used */
+
+#zen-summary,
+#zen-preamble,
+#zen-benefits,
+#zen-requirements {
+    display: none;
+}
+
+
+body {
+    background-color: var(--color-bg-body);
+    color: var(--color-font-body);
+    margin: 0;
+}
+
+
+/* 2 ---- Layout ---- */
+
+.page-wrapper {
+    background-image: var(--img-board);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    width: 80vw;
+    height: 80vh;
+
+    transform: translate(-50%, -50%);
+    border: 10px solid var(--color-board-frame);
+    box-sizing: border-box;
+}
+
+
+abbr {
+    position: relative;
+    top: -10px;
+    font-size: 2em;
+}
+
+
+/* 3 ---- Cards ---- */
+
+article {
+    position: absolute;
+
+    top: var(--pos-top);
+    left: var(--pos-left);
+    transform: rotate(var(--tilt));
+
+    background-image: var(--img-cardback);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 90px;
+    height: 150px;
+    overflow: hidden;
+
+    /* Top, right, bottom, left */
+    padding: 5px 10px 20px 8px;
+    border: 2px dotted white;
+}
+
+
+/* Hold the mouse button down to open the card */
+
+article:active {
+    background-image: var(--front-color);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 300px;
+    height: 50vh;
+}
+
+
+/* Hide everything inside the closed cards */
+
+article > * {
+    opacity: 0;
+}
+
+
+/* Show everything inside the open card */
+
+article:active > * {
+    opacity: 1;
+}
+
+
+/* Hide these elements */
+
+footer,
+aside {
+    display: none;
+}
+
+
+/* 4 ---- Selector Practice ---- */
+
+/* Paragraph directly after an h3 */
+
+h3 + p {
+    display: none;
+}
+
+
+/* First letter inside an article heading */
+
+article h3::first-letter {
+    font-size: 3em;
+}
+
+
+/* Article that is the first child */
+
+article:first-child {
+    text-shadow: 0.5em 0.1em 1em black;
+}
+
+
+/* Every even paragraph */
+
+p:nth-child(2n) {
+    background-color: brown;
+    box-shadow: -25px -25px 50px black;
+}
